@@ -147,3 +147,16 @@ textarea:focus {
   .row { flex-direction: column; gap: 0; }
   .card { padding: 1.5rem; }
 }
+
+select{
+width: 100%;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid #dcdad3;
+  border-radius: 8px;
+  background: #fafaf7;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: #2b2b2b;
+  transition: border-color 0.15s ease, background 0.15s ease;
+  box-sizing: border-box;
+}

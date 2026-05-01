@@ -1,0 +1,370 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ff09f7e3-aec7-4e62-8581-780ea77b7f15",
+              "name": "id_buscado",
+              "value": "={{ $('Telegram Trigger1').item.json.message.text.split(' ')[1] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -208,
+        -736
+      ],
+      "id": "a53a6669-0521-4730-a8b0-7388492c70a0",
+      "name": "Edit Fields4"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -848,
+        -432
+      ],
+      "id": "f9724d8d-0583-442d-8ee3-026403738bb1",
+      "name": "Telegram Trigger1",
+      "webhookId": "290fa38c-1fcf-4c6b-bd4e-49ba54010a49",
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1K7gr_Ku96HSebKSQFKaTWTzRHsyw8sJVKBY-HnJOFDs",
+          "mode": "list",
+          "cachedResultName": "proyecto_Inasistencias",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1K7gr_Ku96HSebKSQFKaTWTzRHsyw8sJVKBY-HnJOFDs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1K7gr_Ku96HSebKSQFKaTWTzRHsyw8sJVKBY-HnJOFDs/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "id",
+              "lookupValue": "={{ $json.id_buscado }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -16,
+        -736
+      ],
+      "id": "7e8b21c1-80e0-4f5b-8ff2-d2345e4601ef",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "OJ824u5gVS4nhBbt",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "=\"chat_id\"",
+        "text": "=La solicitud del estudiante {{ $json.nombre }} esta en estado de {{ $json.estado }}, para mas informacion consultar en la hoja de calculo",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        -736
+      ],
+      "id": "af65f6a0-5395-4707-9d21-b62661abd507",
+      "name": "Send a text message5",
+      "webhookId": "59e9a0a2-36e0-44fe-b6fd-38626cc9faf8",
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Telegram Trigger1').item.json.message.text }}",
+                    "rightValue": "/estado",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    },
+                    "id": "9f4413d2-ebe5-47e5-8a03-d0968cc7a9be"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "299fc0ae-62a8-4002-9455-c2e02a57c419",
+                    "leftValue": "={{ $('Telegram Trigger1').item.json.message.text }}",
+                    "rightValue": "/historial",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "08dd94fe-fcf5-43ff-aa15-046faae3d0cb",
+                    "leftValue": "={{ $('Telegram Trigger1').item.json.message.text }}",
+                    "rightValue": "={{ $json.id_buscado }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notContains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -432,
+        -544
+      ],
+      "id": "611d7fa2-fca5-4597-95f4-4a143210152f",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ff09f7e3-aec7-4e62-8581-780ea77b7f15",
+              "name": "id_buscado",
+              "value": "={{ $('Telegram Trigger1').item.json.message.text.split(' ')[1] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -112,
+        -528
+      ],
+      "id": "a6158530-dc7c-4991-8bd3-ff7428d40bca",
+      "name": "Edit Fields5"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1K7gr_Ku96HSebKSQFKaTWTzRHsyw8sJVKBY-HnJOFDs",
+          "mode": "list",
+          "cachedResultName": "proyecto_Inasistencias",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1K7gr_Ku96HSebKSQFKaTWTzRHsyw8sJVKBY-HnJOFDs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1K7gr_Ku96HSebKSQFKaTWTzRHsyw8sJVKBY-HnJOFDs/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "id",
+              "lookupValue": "={{ $json.id_buscado }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        80,
+        -528
+      ],
+      "id": "8f27e8fa-4e1b-4967-965d-04cebef669a0",
+      "name": "Get row(s) in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "OJ824u5gVS4nhBbt",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "=\"chat_id\"",
+        "text": "=El historial de solicitudes del estudiante {{ $json.nombre }} :\n\n{{ $json.motivo }} \nestado : {{ $json.estado }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        304,
+        -528
+      ],
+      "id": "caa0d2b0-ab32-4198-b0fe-2f688881ded2",
+      "name": "Send a text message6",
+      "webhookId": "59e9a0a2-36e0-44fe-b6fd-38626cc9faf8",
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "chatId": "=",
+        "text": "=Bienvenido(˶ˆᗜˆ˵) ! \npuedes consultarme lo siguiente:\n\n( ˘▽˘)っ- /estado @id — Consulta el estado de una solicitud. \n\n( ˘▽˘)っ- /historial @id — Ver el historial de solicitudes.",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -208,
+        -320
+      ],
+      "id": "69bc0a9b-920e-46ee-b700-c296db68e780",
+      "name": "Send a text message7",
+      "webhookId": "59e9a0a2-36e0-44fe-b6fd-38626cc9faf8"
+    }
+  ],
+  "connections": {
+    "Edit Fields4": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a text message5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields5",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields5": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "db3a8e4c5c514d653c18636f63d331cd5289721cd318f5aa1a6306983b7e9a74"
+  }
+}

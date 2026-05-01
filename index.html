@@ -22,7 +22,7 @@
       <div class="row">
         <div class="field">
           <label for="id">ID</label>
-          <input name= "ID_estudiante"  id="id" type="text" placeholder="id" required />
+          <input   pattern="@.*" name= "ID_estudiante"  id="id" type="text" placeholder="@id" required />
         </div>
         <div class="field">
           <label  for="mail">Correo</label>
@@ -32,7 +32,12 @@
 
       <div class="field">
         <label  for="course">Curso</label>
-        <input name= "curso_estudiante" id="course" type="text" placeholder="curso" required />
+        <select name= "curso_estudiante" id="course" type="text" placeholder="curso" required > 
+            <option>B1</option>
+            <option>D1</option>
+            <option>P3</option>
+            <option>K4</option>
+        </select>
       </div>
 
       <div class="field">
