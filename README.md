@@ -28,18 +28,9 @@ Abre Telegram y busca @BotFather
 Escribe /newbot y sigue las instrucciones
 Copia el Token que te genera
 
-3. API Key de Google Gemini
+3. Google Sheets
 
-Ve a Google AI Studio
-Crea una API Key
-Cópiala para usarla en n8n
-
-4. Google Sheets
-
-Crea una hoja de cálculo en Google Drive
-Agrega las siguientes columnas en la fila 1:
-
-nombre | id | correo | curso | motivo | clasificacion | confianza | razon
+https://docs.google.com/spreadsheets/d/1K7gr_Ku96HSebKSQFKaTWTzRHsyw8sJVKBY-HnJOFDs/edit?usp=sharing
 
 🚀 Cómo importar el flujo en n8n
 
@@ -52,16 +43,6 @@ Sube el archivo flujo_inasistencias.json
 
 🔐 Cómo configurar las credenciales
 Una vez importado el flujo debes reemplazar las credenciales con las tuyas:
-Google Sheets
-
-Abre el nodo Google Sheets
-En Credential conecta tu cuenta de Google
-Selecciona tu hoja de cálculo en Document
-
-Google Gemini
-
-Abre el nodo Google Gemini Chat Model
-En Credential agrega tu API Key de Gemini
 
 Telegram
 
@@ -72,18 +53,10 @@ Repite para todos los nodos de Send a text message
 
 📁 Estructura del repositorio
 📦 sistema-inasistencias
- ┣ 📄 README.md
- ┣ 📄 flujo_inasistencias.json
+ ┣ 📄 JSON_N8N.md
+ ┣ 📄 STYLES
  ┗ 📄 index.html
-
-📸 Screenshot del flujo n8n
-Flujo principal (Formulario → IA → Sheets)
-
-(Agregar screenshot aquí)
-
-Flujo del bot de Telegram
-
-(Agregar screenshot aquí)
+ ┗📄 README.md
 
 
 ⚠️ Riesgos y limitaciones
@@ -96,6 +69,9 @@ Requiere supervisión humana en casos de confianza media
 
 👤 Autor
 Desarrollado como proyecto académico para la automatización de procesos administrativos educativos.
+
+
+Screenshot del Flujo:
 
 <img width="1919" height="929" alt="image" src="https://github.com/user-attachments/assets/c9f70d88-eb54-4458-9a34-6bd4710656b4" />
 
