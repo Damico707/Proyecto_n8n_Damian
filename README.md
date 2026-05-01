@@ -96,3 +96,7 @@ Requiere supervisión humana en casos de confianza media
 
 👤 Autor
 Desarrollado como proyecto académico para la automatización de procesos administrativos educativos.
+
+<img width="1919" height="929" alt="image" src="https://github.com/user-attachments/assets/c9f70d88-eb54-4458-9a34-6bd4710656b4" />
+
+
