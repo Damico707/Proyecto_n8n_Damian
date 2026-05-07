@@ -8,60 +8,71 @@
 </head>
 <body>
   <main class="page">
-    <form class="card" action="https://dock-cranial-shadow.ngrok-free.dev/webhook-test/formulario" method="post" enctype="multipart/form-data">
-      <header class="card-header">
-        <h1>Formulario De Inasistencia</h1>
-        <p>Porfavor digitar los siguientes datos ^^</p>
-      </header>
+<form class="card" action="https://dock-cranial-shadow.ngrok-free.dev/webhook-test/formulario" method="post" enctype="multipart/form-data">
+  <header class="card-header">
+    <h1>Formulario De Inasistencia</h1>
+    <p>Porfavor digitar los siguientes datos ^^</p>
+  </header>
 
-      <div class="field">
-        <label  for="name">Nombre</label>
-        <input name= "nombre_estudiante" id="name" type="text" placeholder="nombre" required />
-      </div>
+  <div class="field">
+    <label for="name">Nombre</label>
+    <input name="nombre_estudiante" id="name" type="text" placeholder="nombre" required />
+  </div>
 
-      <div class="row">
-        <div class="field">
-          <label for="id">ID</label>
-          <input   pattern="@.*" name= "ID_estudiante"  id="id" type="text" placeholder="@id" required />
-        </div>
-        <div class="field">
-          <label  for="mail">Correo</label>
-          <input name= "correo_estudiante" id="mail" type="email" placeholder="correo" required />
-        </div>
-      </div>
+  <div class="row">
+    <div class="field">
+      <label for="id">ID</label>
+      <input pattern="@.*" name="ID_estudiante" id="id" type="text" placeholder="@id" required />
+    </div>
+    <div class="field">
+      <label for="mail">Correo</label>
+      <input name="correo_estudiante" id="mail" type="email" placeholder="correo" required />
+    </div>
+  </div>
 
-      <div class="field">
-        <label  for="course">Curso</label>
-        <select name= "curso_estudiante" id="course" type="text" placeholder="curso" required > 
-            <option>B1</option>
-            <option>D1</option>
-            <option>P3</option>
-            <option>K4</option>
-        </select>
-      </div>
+  <div class="field">
+    <label for="course">Curso</label>
+    <select name="curso_estudiante" id="course" required>
+      <option>B1</option>
+      <option>D1</option>
+      <option>P3</option>
+      <option>K4</option>
+    </select>
+  </div>
 
-      <div class="field">
-        <label for="reason">Motivo de inasistencia</label>
-        <textarea name= "motivo_estudiante" id="reason" rows="4" placeholder="" required></textarea>
-      </div>
+  <div class="row">
+    <div class="field">
+      <label for="fecha_inicio">Fecha de inicio</label>
+      <input name="fecha_inicio" id="fecha_inicio" type="date" required />
+    </div>
+    <div class="field">
+      <label for="fecha_fin">Fecha de fin</label>
+      <input name="fecha_fin" id="fecha_fin" type="date" required />
+    </div>
+  </div>
 
-      <div class="field">
-        <label>Imagen de soporte</label>
-        <label for="file" class="file-drop">
-          <span class="file-cta">Elegir un archivo</span>
-          <span class="file-name" id="file-name">Ningun archivo seleccionado</span>
-          <input
-            name="image"
-            id="file"
-            type="file"
-            accept="image/*"
-            onchange="document.getElementById('file-name').textContent = this.files[0]?.name || 'No file selected';"
-          />
-        </label>
-      </div>
+  <div class="field">
+    <label for="reason">Motivo de inasistencia</label>
+    <textarea name="motivo_estudiante" id="reason" rows="4" placeholder="" required></textarea>
+  </div>
 
-      <button type="submit" class="submit">Enviar Respuesta</button>
-    </form>
+  <div class="field">
+    <label>Imagen de soporte</label>
+    <label for="file" class="file-drop">
+      <span class="file-cta">Elegir un archivo</span>
+      <span class="file-name" id="file-name">Ningun archivo seleccionado</span>
+      <input
+        name="image"
+        id="file"
+        type="file"
+        accept="image/*"
+        onchange="document.getElementById('file-name').textContent = this.files[0]?.name || 'No file selected';"
+      />
+    </label>
+  </div>
+
+  <button type="submit" class="submit">Enviar Respuesta</button>
+</form>
   </main>
 </body>
 </html>
